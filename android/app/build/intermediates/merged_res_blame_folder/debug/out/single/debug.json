@@ -1,0 +1,242 @@
+[
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_plus.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_plus.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_edit.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_edit.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.ktguru.app-main-41:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backiconmask.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backiconmask.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-xhdpi_node_modules_reactnativecheckbox_img_ic_check_box_outline_blank.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-xhdpi/node_modules_reactnativecheckbox_img_ic_check_box_outline_blank.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable_rn_edit_text_material.xml.flat",
+        "source": "com.ktguru.app-main-41:/drawable/rn_edit_text_material.xml"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_drawer_menu.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_drawer_menu.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_user.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_user.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/layout_launch_screen.xml.flat",
+        "source": "com.ktguru.app-main-41:/layout/launch_screen.xml"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_admin.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_admin.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_time.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_time.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_delete.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_delete.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-xhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-xhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_drawer_projects.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_drawer_projects.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-hdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-hdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_nodata.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_nodata.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.ktguru.app-main-41:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.ktguru.app-main-41:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-xhdpi_node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-xhdpi/node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.ktguru.app-main-41:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-xxhdpi_node_modules_reactnativecheckbox_img_ic_check_box_outline_blank.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-xxhdpi/node_modules_reactnativecheckbox_img_ic_check_box_outline_blank.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-xxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-xxhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_drawer_back.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_drawer_back.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_node_modules_reactnativecheckbox_img_ic_check_box_outline_blank.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/node_modules_reactnativecheckbox_img_ic_check_box_outline_blank.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.ktguru.app-main-41:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_img.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_img.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_chat.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_chat.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_node_modules_reactnativecheckbox_img_ic_check_box.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/node_modules_reactnativecheckbox_img_ic_check_box.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_node_modules_reactnativecheckbox_img_ic_indeterminate_check_box.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/node_modules_reactnativecheckbox_img_ic_indeterminate_check_box.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-xxhdpi_node_modules_reactnativecheckbox_img_ic_check_box.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-xxhdpi/node_modules_reactnativecheckbox_img_ic_check_box.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_sub.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_sub.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-xxhdpi_node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-xxhdpi/node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_docs.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_docs.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_email.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_email.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_kt_back.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_kt_back.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_search.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_search.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.ktguru.app-main-41:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_drawer_profile.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_drawer_profile.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_google.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_google.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_hidepassword.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_hidepassword.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-xxxhdpi_node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-xxxhdpi/node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.ktguru.app-main-41:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_logo2.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_logo2.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-xhdpi_node_modules_reactnativecheckbox_img_ic_check_box.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-xhdpi/node_modules_reactnativecheckbox_img_ic_check_box.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_upload.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_upload.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_discussion.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_discussion.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_showpassword.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_showpassword.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.ktguru.app-main-41:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_add.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_add.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.ktguru.app-main-41:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_password.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_password.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_drawer_logout.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_drawer_logout.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-xxxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-xxxhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_logo1.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_logo1.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-hdpi_node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-hdpi/node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable-mdpi_src_assets_cancel.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable-mdpi/src_assets_cancel.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.ktguru.app-main-41:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.ktguru.app-merged_res-39:/drawable_launch_screen.png.flat",
+        "source": "com.ktguru.app-main-41:/drawable/launch_screen.png"
+    }
+]

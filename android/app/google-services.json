@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "841549574610",
+    "project_id": "ktguru-445b4",
+    "storage_bucket": "ktguru-445b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841549574610:android:d227ba39f8d1ca7878580b",
+        "android_client_info": {
+          "package_name": "com.ktguru"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841549574610-jnncgq9sif0eg4j02091qiav4oij9nqv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ktguru",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "841549574610-kjtf314v4c41ciu39tgdbh774n6d7nsv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcCZSObDu1x-RtnCU1687UBPE-9VHmeSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841549574610-kjtf314v4c41ciu39tgdbh774n6d7nsv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

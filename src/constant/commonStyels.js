@@ -1,0 +1,1 @@
+export default { ktBlue :"bg-[#0066A2]"}
