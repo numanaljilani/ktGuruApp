@@ -5,17 +5,20 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import React, { useEffect, useState  , useRef ,useCallback} from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { io } from "socket.io-client";
 import { TextInput } from "react-native-paper";
 import { showMessage, hideMessage } from "react-native-flash-message";
 import ItemsList from "../../../components/projects/ItemsList";
 import { useDispatch, useSelector } from "react-redux";
-import { useFocusEffect, useIsFocused, useNavigation } from "@react-navigation/native";
-import analytics from '@react-native-firebase/analytics';
+import {
+  useFocusEffect,
+  useIsFocused,
+  useNavigation,
+} from "@react-navigation/native";
+import analytics from "@react-native-firebase/analytics";
 
-
-// components 
+// components
 import imagePath from "../../../constant/imagePath";
 import UpdateModal from "../../../components/projects/UpdateModal";
 import DeleteModal from "../../../components/projects/DeleteModal";
@@ -27,22 +30,23 @@ import NoDataFound from "../../../components/common/NoDataFound";
 import { setSocket } from "../../../redux/slice/chatSlice";
 import address from "../../../config/address";
 import { setNavigation } from "../../../redux/slice/navigationSlice";
+import ManageResources from "../../../components/projects/ManageResources";
 
-
-const ENDPOINT =address.PORT;
+const ENDPOINT = address.PORT;
 var socket;
 socket = io(ENDPOINT);
 
-export default React.memo( function Projects() {
+export default React.memo(function Projects() {
   const isFocused = useIsFocused();
 
   // const items = useSelector((state) => state.reducer);
-  const { access_token} = useSelector((state) => state.reducer.token.token);
+  const { access_token } = useSelector((state) => state.reducer.token.token);
   const { user } = useSelector((state) => state.reducer.user);
-  const {loading} = useSelector((state) => state.reducer.navigation);
+  const { loading } = useSelector((state) => state.reducer.navigation);
   const dispatch = useDispatch();
   const [updateMod, setUpdateMod] = useState(false);
   const [deleteMod, setDeleteMod] = useState(false);
+  const [resourceMod, setResourceMod] = useState(false);
   const [createProject, setCreateProject] = useState(false);
   const [addResourcesMod, setAddResourcesMod] = useState(false);
   const [socketInitialized, setSocketInitialized] = useState(false);
@@ -51,7 +55,6 @@ export default React.memo( function Projects() {
   const [refreshing, setRefreshing] = React.useState(false);
   const [opration, setOperation] = useState({});
   const listRef = useRef();
-  
 
   // useFocusEffect(
   //   React.useCallback(() => {
@@ -64,9 +67,7 @@ export default React.memo( function Projects() {
   //   }, [])
   // );
 
-
-
-// console.log("component is rerendering",isFocused)
+  // console.log("component is rerendering",isFocused)
   const [getallproject] = useGetallprojectMutation();
 
   // get all project data
@@ -75,11 +76,11 @@ export default React.memo( function Projects() {
     // console.log(fcm , "fcm Token getiing inside the project")
     // setRefreshing(true);
     // setLoading(true)
-    dispatch(setNavigation(false))
+    dispatch(setNavigation(false));
     const project = await getallproject(access_token);
     if (project.data) {
       setProjectList(project.data);
-      listRef.current = project.data
+      listRef.current = project.data;
     }
     if (project.error) {
       showMessage({ message: project.error.data.message, type: "danger" });
@@ -87,16 +88,15 @@ export default React.memo( function Projects() {
       //   responseError : project.error.data
       // })
     }
-  
-      // setRefreshing(false);
-      // setLoading(false)
+
+    // setRefreshing(false);
+    // setLoading(false)
   };
   useEffect(() => {
-    if(isFocused){
+    if (isFocused) {
       getProject();
     }
   }, [isFocused]);
-
 
   //  scroll down to refresh
   const onRefresh = React.useCallback(() => {
@@ -108,10 +108,9 @@ export default React.memo( function Projects() {
   // SetUp the connection for chat or socket io
   useEffect(() => {
     if (user !== undefined) {
-      socket.emit("setup",user.user);
+      socket.emit("setup", user.user);
     }
   }, []);
-
 
   //  initialize sockets connection
   useEffect(() => {
@@ -126,7 +125,7 @@ export default React.memo( function Projects() {
   // search filter
   const search = (text) => {
     if (text === "") {
-      setProjectList( listRef.current);
+      setProjectList(listRef.current);
     } else {
       let tempList = projectList.filter((data) => {
         return data.projectName.toLowerCase().indexOf(text.toLowerCase()) > -1;
@@ -136,10 +135,7 @@ export default React.memo( function Projects() {
   };
   // console.log(items.user.user.role1.teams)
 
-
-
-
- return ( isFocused ? 
+  return isFocused ? (
     <View>
       <View
         style={{
@@ -148,7 +144,6 @@ export default React.memo( function Projects() {
           height: "100%",
         }}
       >
- 
         <TextInput
           placeholder="Jump to Project"
           mode="outlined"
@@ -174,6 +169,7 @@ export default React.memo( function Projects() {
                 setDeleteMod={setDeleteMod}
                 setUpdateMod={setUpdateMod}
                 data={data}
+                setResourceMod={setResourceMod}
                 setOperation={setOperation}
                 setAddResourcesMod={setAddResourcesMod}
                 setSubProject={setSubProject}
@@ -201,6 +197,13 @@ export default React.memo( function Projects() {
           opration={opration}
         />
       )}
+      {resourceMod && (
+        <ManageResources
+          // setLoading={setLoading}
+          setResourceMod={setResourceMod}
+          opration={opration}
+        />
+      )}
       {createProject && (
         <CreateProject
           // setLoading={setLoading}
@@ -222,10 +225,10 @@ export default React.memo( function Projects() {
         <TouchableOpacity
           style={{ elevation: 20 }}
           onPress={async () => {
-            setCreateProject(true)
-            await analytics().logEvent('new_Project', {
-              item: 'Create new project',
-            })
+            setCreateProject(true);
+            await analytics().logEvent("new_Project", {
+              item: "Create new project",
+            });
           }}
           className=" absolute bottom-10 right-8 rounded-xl p-4 bg-[#0066A2] shadow-2xl shadow-gray-50"
         >
@@ -236,9 +239,8 @@ export default React.memo( function Projects() {
           />
         </TouchableOpacity>
       )}
-    </View> : null
-  )
-})
+    </View>
+  ) : null;
+});
 
 // export default React.memo(Projects);
-

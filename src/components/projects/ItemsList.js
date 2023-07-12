@@ -30,9 +30,10 @@ const ItemsList = ({
   setSubProject,
   setOperation,
   setAddResourcesMod,
+  setResourceMod,
 }) => {
   const { _id: id } = data;
- 
+
   const { user } = useSelector((state) => state.reducer.user);
   const { access_token } = useSelector((state) => state.reducer.token.token);
   // const { _id: projectId } = useSelector(
@@ -62,59 +63,54 @@ const ItemsList = ({
   const [getGroupeChat] = useGroupchatMutation();
   const [allSingleChat] = useAllSingleChatMutation();
   const getSubProject = async () => {
+    const allProj = await getallsubproject({
+      token: access_token,
+      body: { projectId: id },
+    });
+    if (allProj.data) {
+      dispatch(setSubProjectList(allProj.data));
+    }
+  };
 
-    const allProj =  await getallsubproject({
-       token: access_token,
-       body: { projectId: id },
-     });
-     if(allProj.data){
-       dispatch(setSubProjectList(allProj.data));
-     }
-   };
- 
-   const getAllQuestion = async () => {
- 
-    const allQ =  await allquestions({
-       token: access_token,
-       body: { projectId: id },
-     });
-     // console.log(allQ,">>>>>>>>>>>")
- 
-     if(allQ.data){
-       dispatch(setAllQuestion(allQ.data));
-     }
- 
-   };
- 
-   const getAllActivity = async () => {
- 
-    const activeData =  await activity({
-       projectId: id,
-       token: access_token,
-     });
-     if(activeData.data){
-       dispatch(setProjectActivity(activeData.data));
-     }
-   };
- 
-   const singleChat = async () => {
- 
-     const response = await allSingleChat({
-       token:access_token,
-       body: { projectId : id },
-     });
-     if (response.data) {
-       dispatch(setUsers(response.data));
-     }
-     const res = await getGroupeChat({
-       token: access_token,
-       body: { projectId : id },
-     });
- 
-     if (res.data !== null) {
-       dispatch(setGroupChat(res.data));
-     }
-   };
+  const getAllQuestion = async () => {
+    const allQ = await allquestions({
+      token: access_token,
+      body: { projectId: id },
+    });
+    // console.log(allQ,">>>>>>>>>>>")
+
+    if (allQ.data) {
+      dispatch(setAllQuestion(allQ.data));
+    }
+  };
+
+  const getAllActivity = async () => {
+    const activeData = await activity({
+      projectId: id,
+      token: access_token,
+    });
+    if (activeData.data) {
+      dispatch(setProjectActivity(activeData.data));
+    }
+  };
+
+  const singleChat = async () => {
+    const response = await allSingleChat({
+      token: access_token,
+      body: { projectId: id },
+    });
+    if (response.data) {
+      dispatch(setUsers(response.data));
+    }
+    const res = await getGroupeChat({
+      token: access_token,
+      body: { projectId: id },
+    });
+
+    if (res.data !== null) {
+      dispatch(setGroupChat(res.data));
+    }
+  };
 
   // const getSubProject = async () => {
   //  const subPro =  await getallsubproject({
@@ -157,7 +153,7 @@ const ItemsList = ({
   // };
 
   const deleteFunction = () => {
-    setDeleteMod(true);
+    setResourceMod(true);
     setOperation(data);
   };
   const updateFunction = () => {
@@ -185,11 +181,11 @@ const ItemsList = ({
     return (
       <TouchableOpacity
         onPress={deleteFunction}
-        className="my-1 rounded-r-lg bg-red-600 items-center justify-center"
+        className="my-1 rounded-r-lg bg-[#1369c0] items-center justify-center"
       >
         <Image
-          source={imagePath.icDelete}
-          className="mx-3"
+          source={imagePath.icResources}
+          className="mx-3 w-10 h-10"
           style={{ tintColor: "white" }}
         />
       </TouchableOpacity>
@@ -198,27 +194,29 @@ const ItemsList = ({
 
   const UpdateSwipe = () => {
     return (
-      <View className="my-1 rounded-l-xl overflow-hidden">
-        <TouchableOpacity
-          onPress={addResources}
-          className="flex-1 px-2  bg-blue-600  items-center justify-center"
-        >
-          <Image
-            source={imagePath.icAdd}
-            style={{ tintColor: "white" }}
-            className="w-10 h-10 mx-3"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={updateFunction}
-          className="flex-1 px-2  bg-green-600 items-center justify-center"
-        >
-          <Image
-            source={imagePath.icEdit}
-            style={{ tintColor: "white" }}
-            className="w-10 h-10 mx-3"
-          />
-        </TouchableOpacity>
+      <View className=" flex-row">
+        <View className="my-1 rounded-l-xl overflow-hidden">
+          <TouchableOpacity
+            onPress={addResources}
+            className="flex-1 px-2  bg-[#1369c0]  items-center justify-center"
+          >
+            <Image
+              source={imagePath.icAdd}
+              style={{ tintColor: "white" }}
+              className="w-10 h-10 mx-3"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={updateFunction}
+            className="flex-1 px-2  bg-green-600 items-center justify-center"
+          >
+            <Image
+              source={imagePath.icEdit}
+              style={{ tintColor: "white" }}
+              className="w-10 h-10 mx-3"
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   };
@@ -232,7 +230,7 @@ const ItemsList = ({
     // getSubProject();
     getAllQuestion();
     getAllActivity();
-    singleChat()
+    singleChat();
     dispatch(setProject(data));
     navigation.navigate(navigationString.BOTTOM_TABS);
     // dispatch(setLoading(false));
@@ -269,7 +267,7 @@ const ItemsList = ({
       <TouchableOpacity
         onPress={navigateProject}
         style={{ elevation: 5 }}
-        className="py-2  mx-2 justify-between rounded-lg border-t-2 h-40 border-[#0066a2] px-3 bg-white my-1"
+        className="py-2 overflow-hidden  mx-2 justify-between rounded-lg border-t-2 h-40 border-[#0066a2] px-3 bg-white my-1"
       >
         <View>
           <Text className="text-[#35aca8] font-semibold">
@@ -278,7 +276,7 @@ const ItemsList = ({
           <Text className="text-[#0066a2] font-semibold">
             {data.projectName}
           </Text>
-          <Text>{stringManupuation(data.projectDesc, 90)}</Text>
+          <Text>{stringManupuation(data.projectDesc, 75)}</Text>
         </View>
         <View className="flex-row bg-white">
           {data.resources?.length > 0 &&

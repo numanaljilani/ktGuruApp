@@ -18,7 +18,11 @@ import {
   useGroupchatMutation,
   useSingleChatMutation,
 } from "../../../redux/api/chatApi";
-import { addMessage, clearMessage, setGroupChat } from "../../../redux/slice/groupChat";
+import {
+  addMessage,
+  clearMessage,
+  setGroupChat,
+} from "../../../redux/slice/groupChat";
 import { setChatUsers, setSingleChat } from "../../../redux/slice/chatSlice";
 import imagePath from "../../../constant/imagePath";
 import { Dropdown } from "react-native-element-dropdown";
@@ -33,7 +37,7 @@ const Chats = () => {
   const { messageStore, count } = useSelector(
     (state) => state.reducer.groupChat
   );
-  // console.log(project._id)
+  console.log(groupChat.avatar);
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -51,12 +55,10 @@ const Chats = () => {
     }
   };
 
-
-
-  const navigateToChatScreen = async () =>{
-    getAllChat()
-    navigation.navigate(navigationString.CHATS_SCREEN)
-  }
+  const navigateToChatScreen = async () => {
+    getAllChat();
+    navigation.navigate(navigationString.CHATS_SCREEN);
+  };
 
   return (
     <View className="px-4 py-2">
@@ -66,25 +68,30 @@ const Chats = () => {
         </Text>
         <TouchableOpacity
           onPress={navigateToChatScreen}
-          className=" bg-white flex-row px-2 overflow-hidden border-t-2 rounded-lg border-[#0066A2] mt-2"
+          className=" bg-white flex-row px-2  py-2 overflow-hidden border-t-2 rounded-lg border-[#0066A2] mt-2"
         >
           <View
-            className={`border-2 border-[#0066A2] w-16 h-16  rounded-full my-auto ${
+            className={`border-2 overflow-hidden border-[#0066A2] w-16 h-16  rounded-full my-auto ${
               !groupChat?.avatar && "justify-center items-center"
             }`}
           >
-           {groupChat?.avatar && <Image
-              source={
-                groupChat?.avatar
-                  ? { uri: groupChat.avatar }
-                  : imagePath.icProfile
-              }
-              className="flex-1"
-              resizeMode="cover"
-            />}
+            {groupChat?.avatar && (
+              <Image
+                source={
+                  groupChat?.avatar
+                    ? // ? { uri: groupChat.avatar }
+                      {
+                        uri: "https://upload.wikimedia.org/wikipedia/commons/f/f0/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006_edit_1.jpg",
+                      }
+                    : imagePath.icProfile
+                }
+                style={{ flex: 1 }}
+                resizeMode={"cover"}
+              />
+            )}
           </View>
-          <View className="px-2  py-4 ">
-            <Text className="font-semibold">
+          <View className="px-2  py-2 ">
+            <Text className="font-semibold text-black">
               {items.project.project.projectName}
             </Text>
             {items.groupChat.groupChat?.latestMessage && (
@@ -112,7 +119,10 @@ const Chats = () => {
         <Text className="font-semibold text-black">
           Personal Message Channel
         </Text>
-        <TouchableOpacity onPress={()=>setSearch(true)} className="px-5 bg-white rounded-lg border border-[#0066A2] mt-3  py-2 ">
+        <TouchableOpacity
+          onPress={() => setSearch(true)}
+          className="px-5 bg-white rounded-lg border border-[#0066A2] mt-3  py-2 "
+        >
           <Text className=" text-[#0066A2]">| Search by name </Text>
         </TouchableOpacity>
 
