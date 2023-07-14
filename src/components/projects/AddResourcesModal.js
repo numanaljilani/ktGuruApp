@@ -1,26 +1,28 @@
 import { TouchableOpacity, Text, View, Modal } from "react-native";
-import React, { useRef, useState , useEffect , memo} from "react";
+import React, { useRef, useState, useEffect, memo } from "react";
 import { RadioButton, TextInput } from "react-native-paper";
-import analytics from '@react-native-firebase/analytics';
+import analytics from "@react-native-firebase/analytics";
 import { useAddMutation, useTeamsMutation } from "../../redux/api/projectApi";
 import { useDispatch, useSelector } from "react-redux";
 import { showMessage } from "react-native-flash-message";
 import Checkbox from "react-native-check-box";
-import { groupChat } from './../../../../server-ktguru/controllers/chat/chatController';
+import { groupChat } from "./../../../../server-ktguru/controllers/chat/chatController";
 import { setGroupChatData } from "../../redux/slice/groupChat";
 import { useGroupchatMutation } from "../../redux/api/chatApi";
 
 const AddResourcesModal = ({ setLoading, setAddResourcesMod, subProject }) => {
   let obj = {};
-  const {access_token} = useSelector((state) => state.reducer.token.token);
-  const {_id} = useSelector((state) => state.reducer.project.project);
+  const { access_token } = useSelector((state) => state.reducer.token.token);
+  const { _id } = useSelector((state) => state.reducer.project.project);
+  const { user } = useSelector((state) => state.reducer.user);
   const items = useSelector((state) => state.reducer);
-  const {groupChatData} = useSelector((state) => state.reducer.groupChat);
+  const { groupChatData } = useSelector((state) => state.reducer.groupChat);
 
-  const dispatch = useDispatch()
-  const [getGroupeChat,{data : resData ,isSuccess,error,isError}] = useGroupchatMutation();
+  const dispatch = useDispatch();
+  const [getGroupeChat, { data: resData, isSuccess, error, isError }] =
+    useGroupchatMutation();
 
-// console.log(items.project.project._id)
+  // console.log(items.project.project._id)
 
   const [checked, setChecked] = React.useState("Admin");
   const [checkedBox, setCheckedBox] = useState();
@@ -30,24 +32,23 @@ const AddResourcesModal = ({ setLoading, setAddResourcesMod, subProject }) => {
     projectId: _id,
     projectRole: "Consultant",
     email: "",
-    chatId:"",
+    chatId: "",
     subProjects: [],
     message: "welcome",
   });
-// console.log(items.project.project)
+  // console.log(items.project.project)
   const [teams] = useTeamsMutation();
-  const [add] = useAddMutation()
+  const [add] = useAddMutation();
   // console.log(checkedProject.subProjects)
 
   const adminRef = useRef({
+    name: user.user && user.user.firstName,
     projectId: _id,
+    projectRole: "projectAdmin",
     email: "",
-    name: items.user.user.user && items.user.user.user.firstName,
+    chatId: "",
     message: "",
-    projectRole:"Admin",
-    chatId :""
   });
-
 
   const checkeBox = (data, id, index) => {
     if (!checkedBox) {
@@ -66,7 +67,6 @@ const AddResourcesModal = ({ setLoading, setAddResourcesMod, subProject }) => {
         setCheckedBox({ ...checkedBox, [index]: true });
         setArray([...array, body]);
         setCheckedProject({ ...checkedProject, subProjects: array });
-        
       }
     }
   };
@@ -74,62 +74,55 @@ const AddResourcesModal = ({ setLoading, setAddResourcesMod, subProject }) => {
   // console.log(groupChatData._id)
 
   const invite = async () => {
-setLoading(true);
-    await analytics().logEvent('Add_Resources', {
-      Button: 'Invite consaltant or project head',
-    })
+    // setLoading(true);
+    await analytics().logEvent("Add_Resources", {
+      Button: "Invite consaltant or project head",
+    });
 
-    const response = await getGroupeChat(
-      {
-        token: access_token,
-        body: { projectId:items.project.project._id},
-    })
-
+    const response = await getGroupeChat({
+      token: access_token,
+      body: { projectId: items.project.project._id },
+    });
 
     if (checked === "Admin") {
       // console.log(adminRef.current)
-      adminRef.current.chatId = response.data._id
+      adminRef.current.chatId = response.data._id;
       const res = await add({
         body: adminRef.current,
-        token:access_token,
+        token: access_token,
       });
+      console.log(res);
 
-
-      if(res.data){
-        showMessage({ message :res.data.message , type : "success"})
-        setLoading(false)
-        setAddResourcesMod(false)
-      }else{
-        if(res.error){
-          showMessage({ message : res.error.data.message , type : "danger"})
-          setAddResourcesMod(false)
+      if (res.data) {
+        showMessage({ message: res.data.message, type: "success" });
+        // setLoading(false);
+        setAddResourcesMod(false);
+      } else {
+        if (res.error) {
+          showMessage({ message: res.error.data.message, type: "danger" });
+          setAddResourcesMod(false);
         }
       }
     } else {
-      
-
-
-    if(response.data){
-      dispatch(setGroupChatData(response.data))
-      setCheckedProject({ ...checkedProject, chatId:response.data._id });
-    }
-    if(checkedProject.subProjects.length > 0 ){
-      const res = await add({
-        body:checkedProject,
-        token: access_token,
-      })
-      if(res.data){
-        showMessage({message:res.data.message , type :"success"})
-        setLoading(false)
-        setAddResourcesMod(false)
+      if (response.data) {
+        dispatch(setGroupChatData(response.data));
+        setCheckedProject({ ...checkedProject, chatId: response.data._id });
       }
-      if(res.error){
-
-        showMessage({message:res.error.data.message , type :'danger'})
-        setLoading(false)
+      if (checkedProject.subProjects.length > 0) {
+        const res = await add({
+          body: checkedProject,
+          token: access_token,
+        });
+        if (res.data) {
+          showMessage({ message: res.data.message, type: "success" });
+          // setLoading(false);
+          setAddResourcesMod(false);
+        }
+        if (res.error) {
+          showMessage({ message: res.error.data.message, type: "danger" });
+          // setLoading(false);
+        }
       }
-    }
-
     }
   };
   // console.log(checkedProject.subProjects);
@@ -156,6 +149,7 @@ setLoading(true);
                 outlineColor="#0066A2"
                 activeOutlineColor="#0066A2"
                 placeholder="Enter email address"
+                autoCapitalize="none"
                 onChangeText={(text) =>
                   checked === "Admin"
                     ? (adminRef.current.email = text)

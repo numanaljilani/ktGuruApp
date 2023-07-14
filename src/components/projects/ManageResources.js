@@ -11,13 +11,11 @@ import navigationString from "../../constant/navigationString";
 import { setResource, setUserInfo } from "../../redux/slice/prjectSlice";
 
 const ManageResources = ({ setResourceMod, opration }) => {
-  //   console.log(opration);
   const { user } = useSelector((state) => state.reducer.user);
   const { access_token } = useSelector((state) => state.reducer.token.token);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [getresource] = useGetresourcesMutation();
-  //   console.log(user.user.id);
 
   const navigatetoManageResource = async (data) => {
     // console.log(data);
@@ -29,9 +27,9 @@ const ManageResources = ({ setResourceMod, opration }) => {
       },
       token: access_token,
     });
-    console.log(res);
     if (res.data) {
       dispatch(setResource(res.data));
+      setResourceMod(false);
       navigation.navigate(navigationString.MANAGERESOURCES);
     }
   };
@@ -53,7 +51,9 @@ const ManageResources = ({ setResourceMod, opration }) => {
           <View className="px-2 ">
             <View>
               {opration?.resources?.map((data, index) =>
-                data.userId._id != user.user.id ? (
+                data.userId._id != user.user.id &&
+                data.userRole !== "admin" &&
+                data.userRole !== "projectAdmin" ? (
                   <TouchableOpacity
                     onPress={() => navigatetoManageResource(data)}
                     key={index}

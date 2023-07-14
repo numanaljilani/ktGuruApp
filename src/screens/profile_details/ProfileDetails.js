@@ -7,12 +7,14 @@ import { useUserprofileAPIMutation } from "../../redux/api/api";
 import { showMessage } from "react-native-flash-message";
 import { useNavigation } from "@react-navigation/native";
 import navigationString from "../../constant/navigationString";
+import Indicator from "../../components/common/Indicator";
 
 const ProfileDetails = () => {
   const [checked, setChecked] = React.useState("Company");
+  const [loading, setLoading] = React.useState(false);
   const [userprofile] = useUserprofileAPIMutation();
-  const items = useSelector((state) => state.reducer);
-const navigation = useNavigation()
+  const { access_token } = useSelector((state) => state.reducer.token.token);
+  const navigation = useNavigation();
   const companyProfile = useRef({
     websiteUrl: "",
     companyName: "",
@@ -24,22 +26,33 @@ const navigation = useNavigation()
   });
 
   const save = async () => {
+    // setLoading(true);
     if (checked === "Company") {
+      console.log(companyProfile.current, checked);
       const response = await userprofile({
         body: companyProfile.current,
-        token: items.token.token.access_token,
+        token: access_token,
       });
-      // console.log(response);
+      if (response.data) {
+        showMessage({ message: response.data.message, type: "success" });
+        setLoading(false);
+        navigation.replace(navigationString.DRAWER);
+      }
 
       if (response.error) {
         showMessage({ message: response.error.data.message, type: "danger" });
       }
     } else {
-      // console.log(consaltantRef.current);
+      // console.log("consaltant");
       const response = await userprofile({
         body: consaltantRef.current,
-        token: items.token.token.access_token,
+        token: access_token,
       });
+      if (response.data) {
+        showMessage({ message: response.data.message, type: "success" });
+        setLoading(false);
+        navigation.replace(navigationString.DRAWER);
+      }
       // console.log(response, "response from");
       if (response.error) {
         showMessage({ message: response.error.data.message, type: "danger" });
@@ -55,14 +68,21 @@ const navigation = useNavigation()
       }}
     >
       <View className=" flex-row justify-end ">
-        <TouchableOpacity onPress={()=> navigation.navigate(navigationString.AUTH)} className="float-right rounded-full px-2 py-2 bg-[#0067a219]  ">
-          <Image source={imagePath.icLogout} style={{ tintColor: "#0066A2" }} className="w-9 h-9"/>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(navigationString.AUTH)}
+          className="float-right rounded-full px-2 py-2 bg-[#0067a219]  "
+        >
+          <Image
+            source={imagePath.icLogout}
+            style={{ tintColor: "#0066A2" }}
+            className="w-9 h-9"
+          />
         </TouchableOpacity>
       </View>
       <Image
         source={imagePath.imgKt_Logo2}
         className=" h-24 w-24 self-center my-2 "
-        resizeMode=""
+        resizeMode="cover"
       />
       <Text className="font-semibold text-black mx-auto">
         Join as a Company or Consaltant
@@ -94,6 +114,9 @@ const navigation = useNavigation()
                 outlineColor="#0066A2"
                 activeOutlineColor="#0066A2"
                 placeholder="Company Name"
+                onChangeText={(text) =>
+                  (companyProfile.current.companyName = text)
+                }
               />
             </View>
             <View className="mt-2">
@@ -102,6 +125,9 @@ const navigation = useNavigation()
                 outlineColor="#0066A2"
                 activeOutlineColor="#0066A2"
                 placeholder="Website URL"
+                onChangeText={(text) =>
+                  (companyProfile.current.websiteUrl = text)
+                }
               />
             </View>
           </View>
@@ -129,6 +155,7 @@ const navigation = useNavigation()
           <Text className="text-white text-base text-center">Save</Text>
         </TouchableOpacity>
       </View>
+      {loading && <Indicator />}
     </View>
   );
 };

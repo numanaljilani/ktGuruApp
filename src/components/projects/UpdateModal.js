@@ -8,14 +8,14 @@ import {
 import React, { useState } from "react";
 import { TextInput } from "react-native-paper";
 import { useUpdateprojectAPIMutation } from "../../redux/api/projectApi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { showMessage } from "react-native-flash-message";
-import analytics from '@react-native-firebase/analytics';
+import analytics from "@react-native-firebase/analytics";
 import { setLoading } from "../../redux/slice/navigationSlice";
 
-const UpdateModal = ({ setUpdateMod, opration  ,getProject}) => {
-  const {loading} = useSelector((state) => state.reducer.navigation);
+const UpdateModal = ({ setUpdateMod, opration, getProject }) => {
   const items = useSelector((state) => state.reducer);
+  const dispatch = useDispatch();
   const [updateproject] = useUpdateprojectAPIMutation();
   const [data, setData] = useState({
     projectName: opration.projectName,
@@ -24,25 +24,27 @@ const UpdateModal = ({ setUpdateMod, opration  ,getProject}) => {
   });
 
   const Update = async () => {
-    await analytics().logEvent('update_Project', {
-      Button: 'Update project',
-    })
-    dispatch(setLoading(true))
+    await analytics().logEvent("update_Project", {
+      Button: "Update project",
+    });
+    dispatch(setLoading(true));
+    setUpdateMod(false);
     const res = await updateproject({
       body: data,
       token: items.token.token.access_token,
       id: opration._id,
     });
-    setUpdateMod(false);
+    console.log(res);
+
     if (res.data) {
-      getProject()
+      getProject();
       showMessage({
         message: "Project Update Successfull",
         type: "success",
       });
     }
 
-    dispatch(setLoading(false))
+    dispatch(setLoading(false));
   };
   return (
     <Modal

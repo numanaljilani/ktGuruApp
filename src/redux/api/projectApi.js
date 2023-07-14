@@ -126,6 +126,35 @@ export const project = createApi({
       },
     }),
 
+    removeresources: build.mutation({
+      query: (args) => {
+        // console.log(args, 'updateproject');
+        return {
+          url: `remove-resources`,
+          method: "POST",
+          body: args.body,
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: `Bearer ${args.token}`,
+          },
+        };
+      },
+    }),
+    addsubprojectresource: build.mutation({
+      query: (args) => {
+        // console.log(args, 'updateproject');
+        return {
+          url: `add-insubproject`,
+          method: "POST",
+          body: args.body,
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: `Bearer ${args.token}`,
+          },
+        };
+      },
+    }),
+
     notification: build.mutation({
       query: (args) => {
         // console.log(args, 'updateproject');
@@ -155,4 +184,6 @@ export const {
   useActivityMutation,
   useNotificationMutation,
   useGetresourcesMutation,
+  useRemoveresourcesMutation,
+  useAddsubprojectresourceMutation,
 } = project;

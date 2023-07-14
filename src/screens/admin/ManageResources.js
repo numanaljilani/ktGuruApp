@@ -1,13 +1,76 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import imagePath from "../../constant/imagePath";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import navigationString from "../../constant/navigationString";
+import {
+  useAddsubprojectresourceMutation,
+  useGetresourcesMutation,
+  useRemoveresourcesMutation,
+} from "../../redux/api/projectApi";
+import { showMessage } from "react-native-flash-message";
+import { setResource } from "../../redux/slice/prjectSlice";
 
 const ManageResources = () => {
   const { access_token } = useSelector((state) => state.reducer.token.token);
   const { projectResources, resourceUserInfo } = useSelector(
     (state) => state.reducer.project
   );
+
+  const dispatch = useDispatch();
+  // console.log(projectResources.notMatchingSubProjects);
+  const [getresource] = useGetresourcesMutation();
+  const [removeresource] = useRemoveresourcesMutation();
+  const [addresourceinsubproject] = useAddsubprojectresourceMutation();
+
+  const removeProject = async (data, project) => {
+    const res = await removeresource({
+      token: access_token,
+      body: {
+        projectId: data?._id,
+        userId: resourceUserInfo?.userId?.id,
+        removedFromAllProject: project, //boolean value if yes send main project projectId otherwise subProject projectId.
+      },
+    });
+    if (res.data) {
+      showMessage({ message: res.data.message, type: "success" });
+      getResources();
+      // navigation.navigate(navigationString.PROJECTS);
+    }
+  };
+
+  const getResources = async () => {
+    const res = await getresource({
+      body: {
+        projectId: projectResources._id,
+        userId: resourceUserInfo?.userId?.id,
+      },
+      token: access_token,
+    });
+
+    if (res.data) {
+      dispatch(setResource(res.data));
+    }
+  };
+
+  const addresource = async (data) => {
+    const res = await addresourceinsubproject({
+      token: access_token,
+      body: {
+        projectId: data?.id,
+        userId: resourceUserInfo?.userId?.id,
+        projectRole: projectResources.matchedResourcesProject.userRole, //boolean value if yes send main project projectId otherwise subProject projectId.
+      },
+    });
+    if (res.data) {
+      showMessage({ message: res.data.message, type: "success" });
+      getResources();
+      // navigation.navigate(navigationString.PROJECTS);
+    }
+  };
+  // console.log(projectResources._id);
+  const navigation = useNavigation();
   //   console.log(projectResources.matchingSubProjects);
   //   console.log(resourceUserInfo);
   return (
@@ -19,10 +82,10 @@ const ManageResources = () => {
               <Image
                 source={
                   resourceUserInfo.userId.avatar
-                    ? { uri: resourceUserInfo.userId.firstName }
+                    ? { uri: resourceUserInfo.userId.avatar }
                     : imagePath.icProfile
                 }
-                className="flex-1 self-center"
+                className="w-full h-full"
                 resizeMode="cover"
               />
             </View>
@@ -46,7 +109,9 @@ const ManageResources = () => {
               Added as a{" "}
               <Text className="text-blue-500">
                 {projectResources.matchedResourcesProject.userRole ===
-                "companyManager"
+                  "companyManager" ||
+                projectResources.matchedResourcesProject.userRole ===
+                  "projectAdmin"
                   ? "Admin"
                   : "Consaltant"}
               </Text>
@@ -63,24 +128,57 @@ const ManageResources = () => {
                     <Text>
                       {data.projectName} :{" "}
                       <Text className="text-blue-500">
-                        {data.userRole === "companyManager"
+                        {data.userRole === "companyManager" ||
+                        data.userRole === "projectAdmin"
                           ? "Admin"
                           : "Consaltant"}
                       </Text>
                     </Text>
-                    <TouchableOpacity className="bg-red-100 px-2 py-1">
-                      <Text className="text-red-500">Remove</Text>
+                    <TouchableOpacity
+                      className="bg-red-100 px-2 py-1"
+                      onPress={() => removeProject(data, false)}
+                    >
+                      <Text className="text-red-500 font-semibold">Remove</Text>
                     </TouchableOpacity>
                   </View>
                 ))}
               </View>
-              <TouchableOpacity className="bg-red-200 py-2 rounded-lg mb-3">
+              <View>
+                {projectResources.notMatchingSubProjects.map((data, index) => (
+                  <View key={index} className="  py-2 flex-row justify-between">
+                    <Text>
+                      {data.projectName} :{" "}
+                      <Text className="text-blue-500">
+                        {data.userRole === "companyManager" ||
+                        data.userRole === "projectAdmin"
+                          ? "Admin"
+                          : "Admin"}
+                      </Text>
+                    </Text>
+                    <TouchableOpacity
+                      className="bg-green-100  px-2 py-1"
+                      onPress={() => addresource(data)}
+                    >
+                      <Text className="text-green-500 font-semibold px-4">
+                        Add
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                ))}
+              </View>
+              <TouchableOpacity
+                className="bg-red-200 py-2 rounded-lg mb-3"
+                onPress={() => removeProject(projectResources, true)}
+              >
                 <Text className="text-red-500  text-center font-semibold">
                   Remove from all projects
                 </Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity className="bg-[#0066A2] py-2 rounded-lg mb-3">
+            <TouchableOpacity
+              className="bg-[#0066A2] py-2 rounded-lg mb-3"
+              onPress={() => navigation.navigate(navigationString.PROJECTS)}
+            >
               <Text className="text-white  text-center font-semibold">
                 Go Back
               </Text>

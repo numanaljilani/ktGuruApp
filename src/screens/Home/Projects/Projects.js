@@ -55,7 +55,7 @@ export default React.memo(function Projects() {
   const [refreshing, setRefreshing] = React.useState(false);
   const [opration, setOperation] = useState({});
   const listRef = useRef();
-
+  // console.log(user);
   // useFocusEffect(
   //   React.useCallback(() => {
   //     // Do something when the screen is focused
@@ -82,6 +82,7 @@ export default React.memo(function Projects() {
       setProjectList(project.data);
       listRef.current = project.data;
     }
+    console.log(project.data[0]);
     if (project.error) {
       showMessage({ message: project.error.data.message, type: "danger" });
       // await crashlytics.setAttributes({

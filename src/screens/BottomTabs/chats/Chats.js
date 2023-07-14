@@ -37,7 +37,7 @@ const Chats = () => {
   const { messageStore, count } = useSelector(
     (state) => state.reducer.groupChat
   );
-  console.log(groupChat.avatar);
+  // console.log(groupChat.avatar);
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -81,11 +81,11 @@ const Chats = () => {
                   groupChat?.avatar
                     ? // ? { uri: groupChat.avatar }
                       {
-                        uri: "https://upload.wikimedia.org/wikipedia/commons/f/f0/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006_edit_1.jpg",
+                        uri: groupChat?.avatar,
                       }
                     : imagePath.icProfile
                 }
-                style={{ flex: 1 }}
+                className="w-full h-full"
                 resizeMode={"cover"}
               />
             )}

@@ -14,7 +14,9 @@ const AskQuestionModal = ({ setAskQuestion, getAllQuestion }) => {
   // console.log(opration)
   // const items = useSelector((state) => state.reducer);
   const { access_token } = useSelector((state) => state.reducer.token.token);
-  const { _id : projectId  } = useSelector((state) => state.reducer.subProject.subProject);
+  const { _id: projectId } = useSelector(
+    (state) => state.reducer.subProject.subProject
+  );
   const { user } = useSelector((state) => state.reducer.user.user);
   const { _id, projectName } = useSelector(
     (state) => state.reducer.subProject.subProject
@@ -38,10 +40,10 @@ const AskQuestionModal = ({ setAskQuestion, getAllQuestion }) => {
     formData.append("title", askQuestionRef.current.title);
     formData.append("desc", askQuestionRef.current.desc);
     formData.append("projectId", askQuestionRef.current.projectId);
+    formData.append("SubProjects", "SubProjects");
     if (askQuestionRef.current.file) {
       formData.append("file", askQuestionRef.current.file);
     }
-
 
     const res = await question({
       formData,
@@ -49,7 +51,7 @@ const AskQuestionModal = ({ setAskQuestion, getAllQuestion }) => {
     });
 
     if (res.data) {
-      getAllQuestion()
+      getAllQuestion();
       showMessage({
         message: "Project Update Successfull",
         type: "success",
@@ -68,7 +70,6 @@ const AskQuestionModal = ({ setAskQuestion, getAllQuestion }) => {
         token: access_token,
       });
     }
-
   };
 
   const uploadDocument = async () => {

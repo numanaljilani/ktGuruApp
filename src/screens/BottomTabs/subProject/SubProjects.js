@@ -16,15 +16,17 @@ import { setSubProjectList } from "../../../redux/slice/subProject";
 
 const SubProjects = ({ route }) => {
   // const items = useSelector((state) => state.reducer);
-  const { _id : projectId ,resources} = useSelector((state) => state.reducer.project.project);
+  const { _id: projectId, resources } = useSelector(
+    (state) => state.reducer.project.project
+  );
   const { user } = useSelector((state) => state.reducer.user);
   const { access_token } = useSelector((state) => state.reducer.token.token);
   // const { subProjectList } = useSelector((state) => state.reducer.subProject);
- 
+
   const [updateMod, setUpdateMod] = useState(false);
   const [deleteMod, setDeleteMod] = useState(false);
   const [createProject, setCreateProject] = useState(false);
-  const [subProjectState , setProjectState] = useState()
+  const [subProjectState, setProjectState] = useState();
   const [loading, setLoading] = useState(false);
   const [opration, setOperation] = useState({});
 
@@ -36,31 +38,31 @@ const SubProjects = ({ route }) => {
     useNotificationMutation();
 
   const getProject = async () => {
-    setLoading(true)
+    setLoading(true);
     const project = await getallsubproject({
       token: access_token,
       body: { projectId },
     });
 
     if (project.data && project.data.length > 0) {
-      setProjectState(project.data)
+      setProjectState(project.data);
       dispatch(setSubProjectList(project.data));
     }
-    setLoading(false)
+    setLoading(false);
   };
   // useEffect(() => {
   //     getProject()
   // }, [isFocus]);
-  useEffect(()=>{
-    if(isFocus){
-      getProject()
+  useEffect(() => {
+    if (isFocus) {
+      getProject();
     }
-  },[isFocus])
-useEffect(()=>{
-  if(!createProject){
-    getProject()
-  }
-},[createProject])
+  }, [isFocus]);
+  useEffect(() => {
+    if (!createProject) {
+      getProject();
+    }
+  }, [createProject]);
   useEffect(() => {
     notification({ body: { projectId }, token: access_token });
   }, []);
@@ -70,11 +72,10 @@ useEffect(()=>{
       dispatch(AddProjectNotificationFromApi(data));
     }
   }, [isSuccess]);
-  
-// useEffect(()=>{
-//   setTimeout()
-// },[])
 
+  // useEffect(()=>{
+  //   setTimeout()
+  // },[])
 
   return (
     <View>
@@ -86,10 +87,20 @@ useEffect(()=>{
         }}
       >
         <View className="mt-2 flex-row justify-center">
-          {resources?.length > 0 &&
-            resources.map((data, index) => (
-              <BigUserIcons data={data} key={index} />
-            ))}
+          {resources?.length > 0
+            ? resources.map((data, index) =>
+                index < 4 ? <BigUserIcons data={data} key={index} /> : null
+              )
+            : null}
+
+          {resources?.length > 4 ? (
+            <TouchableOpacity
+              className=" bg-white w-12 h-12 mr-1  flex-row justify-center items-center rounded-full overflow-hidden"
+              style={{ elevation: 5 }}
+            >
+              <Text className="font-semibold">+{resources?.length - 4}</Text>
+            </TouchableOpacity>
+          ) : null}
         </View>
         <View className="flex-row px-5 justify-between items-center my-3">
           <Text className="font-semibold">All Sub Sections</Text>

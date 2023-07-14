@@ -35,9 +35,16 @@ const QuestionDetails = ({}) => {
   );
   const { user } = useSelector((state) => state.reducer.user.user);
   const { access_token } = useSelector((state) => state.reducer.token.token);
-  const { _id: questionId , title ,file , isSummary ,userId , createdAt ,desc , summary} = useSelector(
-    (state) => state.reducer.question.question
-  );
+  const {
+    _id: questionId,
+    title,
+    file,
+    isSummary,
+    userId,
+    createdAt,
+    desc,
+    summary,
+  } = useSelector((state) => state.reducer.question.question);
   const { _id: projectId } = useSelector(
     (state) => state.reducer.project.project
   );
@@ -100,9 +107,9 @@ const QuestionDetails = ({}) => {
         body: {
           projectId,
           data: {
-            title: `New answer from ${user.firstName + "" + user.lastName} on ${
-              title
-            }`,
+            title: `New answer from ${
+              user.firstName + "" + user.lastName
+            } on ${title}`,
             body: `${urAnswer.answerData}`,
           },
         },
@@ -251,17 +258,16 @@ const QuestionDetails = ({}) => {
         )}
       </View>
       <View className="mx-4 mt-4 pb-2 border-b-2">
-        <Text className="text-black font-semibold">
-          {title}
-        </Text>
+        <Text className="text-black font-semibold">{title}</Text>
         <Text className="text-xs mt-2">
           Asked by {userId?.firstName}
           {new Date(createdAt).toLocaleDateString() +
             " " +
-            new Date(createdAt).toLocaleString(
-              "en-US",
-              { hour: "numeric", minute: "numeric", hour12: true }
-            )}
+            new Date(createdAt).toLocaleString("en-US", {
+              hour: "numeric",
+              minute: "numeric",
+              hour12: true,
+            })}
         </Text>
       </View>
       <ScrollView className=" flex-1" ref={scrollViewRef}>
@@ -290,7 +296,8 @@ const QuestionDetails = ({}) => {
               >
                 <Image
                   source={{ uri: file }}
-                  className="h-full w-full "
+                  className="w-full h-full"
+                  resizeMode="cover"
                 />
               </TouchableOpacity>
             )
@@ -314,9 +321,7 @@ const QuestionDetails = ({}) => {
             <Text className="text-black font-semibold border-t">
               Discussion Closed
             </Text>
-            <Text className="text-black">
-              {summary.text}
-            </Text>
+            <Text className="text-black">{summary.text}</Text>
 
             {
               <TouchableOpacity
@@ -406,5 +411,3 @@ const QuestionDetails = ({}) => {
 };
 
 export default QuestionDetails;
-
-

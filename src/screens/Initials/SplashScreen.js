@@ -23,6 +23,7 @@ try {
       dispatch(setToken(JSON.parse(token)))
       const res = await me(JSON.parse(token).access_token);
       // console.log(typeof(token))
+      console.log(res)
   
       if (res.data) {
         dispatch(setUser(res.data));
