@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import imagePath from "../../constant/imagePath";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
@@ -11,6 +11,7 @@ import {
 } from "../../redux/api/projectApi";
 import { showMessage } from "react-native-flash-message";
 import { setResource } from "../../redux/slice/prjectSlice";
+import Indicator from "../../components/common/Indicator";
 
 const ManageResources = () => {
   const { access_token } = useSelector((state) => state.reducer.token.token);
@@ -24,7 +25,9 @@ const ManageResources = () => {
   const [removeresource] = useRemoveresourcesMutation();
   const [addresourceinsubproject] = useAddsubprojectresourceMutation();
 
+  const [loading, setLoading] = useState(false);
   const removeProject = async (data, project) => {
+    setLoading(true);
     const res = await removeresource({
       token: access_token,
       body: {
@@ -34,8 +37,9 @@ const ManageResources = () => {
       },
     });
     if (res.data) {
-      showMessage({ message: res.data.message, type: "success" });
       getResources();
+      setLoading(false);
+      showMessage({ message: res.data.message, type: "success" });
       // navigation.navigate(navigationString.PROJECTS);
     }
   };
@@ -55,6 +59,7 @@ const ManageResources = () => {
   };
 
   const addresource = async (data) => {
+    setLoading(true);
     const res = await addresourceinsubproject({
       token: access_token,
       body: {
@@ -64,10 +69,12 @@ const ManageResources = () => {
       },
     });
     if (res.data) {
-      showMessage({ message: res.data.message, type: "success" });
       getResources();
+      setLoading(false);
+      showMessage({ message: res.data.message, type: "success" });
       // navigation.navigate(navigationString.PROJECTS);
     }
+    setLoading(false);
   };
   // console.log(projectResources._id);
   const navigation = useNavigation();
@@ -76,8 +83,11 @@ const ManageResources = () => {
   return (
     <View className="flex-1 py-3">
       <ScrollView>
-        <View className="border my-auto  mx-2 rounded-lg m">
-          <View className="  mt-2 ">
+        <View
+          className=" bg-blue-50  mx-2 rounded-lg my-4"
+          style={{ elevation: 6 }}
+        >
+          <View className="  mt-2">
             <View className="border-2 mt-2  border-[#0066A2] w-24 h-24 rounded-full my-auto mx-auto overflow-hidden">
               <Image
                 source={
@@ -186,6 +196,7 @@ const ManageResources = () => {
           </View>
         </View>
       </ScrollView>
+      {loading && <Indicator />}
     </View>
   );
 };

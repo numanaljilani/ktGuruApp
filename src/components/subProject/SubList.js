@@ -8,9 +8,17 @@ import { stringManupuation } from "../../utils/stringManupulation";
 import { useDispatch, useSelector } from "react-redux";
 import { setSubProject } from "../../redux/slice/subProject";
 import UserIcons from "../userComponent/UserIcons";
-import analytics from '@react-native-firebase/analytics';
+import analytics from "@react-native-firebase/analytics";
 
-const SubList = ({ setDeleteMod, setUpdateMod, data, setOperation }) => {
+const SubList = ({
+  setDeleteMod,
+  setUpdateMod,
+  data,
+  setOperation,
+  setShowResourceLis,
+  setSubUserData,
+  setShowSubResourceLis,
+}) => {
   const { user } = useSelector((state) => state.reducer.user);
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -27,7 +35,6 @@ const SubList = ({ setDeleteMod, setUpdateMod, data, setOperation }) => {
     setUpdateMod(true);
     setOperation(data);
   };
-  
 
   const DeleteSwipe = () => {
     return (
@@ -61,17 +68,17 @@ const SubList = ({ setDeleteMod, setUpdateMod, data, setOperation }) => {
     );
   };
 
-  const navigateFunction = async() => {
-    await analytics().logEvent('navigate_to_Sub_project', {
-      list: 'navigate to sub project',
-      subProjectName : data?.projectName
-    })
+  const navigateFunction = async () => {
+    await analytics().logEvent("navigate_to_Sub_project", {
+      list: "navigate to sub project",
+      subProjectName: data?.projectName,
+    });
     dispatch(setSubProject(data));
     navigation.navigate(navigationString.SUBPROJECT);
   };
   return (
     <Swipeable
-    ref={swipeableRef}
+      ref={swipeableRef}
       overshootLeft={false}
       overshootRight={false}
       renderRightActions={user?.role1 && UpdateSwipe}
@@ -92,9 +99,34 @@ const SubList = ({ setDeleteMod, setUpdateMod, data, setOperation }) => {
         </View>
         <View className="flex-row self-baseline">
           {data.resources &&
-            data.resources.map((data, index) => (
-              <UserIcons data={data} key={index} />
-            ))}
+            data.resources.map(
+              (mapData, index) =>
+                index < 4 && (
+                  <UserIcons
+                    data={mapData}
+                    resource={data.resources}
+                    key={index}
+                    setSubUserData={setSubUserData}
+                    setShowResourceLis={setShowResourceLis}
+                    setShowSubResourceLis={setShowSubResourceLis}
+                  />
+                )
+            )}
+          {data.resources.length > 4 ? (
+            <TouchableOpacity
+              onPress={() => {
+                setShowResourceLis(true);
+                setSubUserData(data.resources);
+                setShowSubResourceLis(true);
+              }}
+              className=" mr-1  flex-row justify-center items-center w-9  h-9 rounded-full overflow-hidden bg-blue-50 shadow-2xl"
+              style={{ elevation: 2 }}
+            >
+              <Text className="font-semibold text-black">
+                {data.resources.length - 4}
+              </Text>
+            </TouchableOpacity>
+          ) : null}
         </View>
       </TouchableOpacity>
     </Swipeable>

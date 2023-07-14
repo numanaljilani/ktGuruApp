@@ -13,6 +13,7 @@ import analytics from "@react-native-firebase/analytics";
 import { useNotificationMutation } from "../../../redux/api/projectApi";
 import { AddProjectNotificationFromApi } from "../../../redux/slice/cahtNotificationSlice";
 import { setSubProjectList } from "../../../redux/slice/subProject";
+import UserList from "../../../components/userComponent/UserList";
 
 const SubProjects = ({ route }) => {
   // const items = useSelector((state) => state.reducer);
@@ -27,6 +28,9 @@ const SubProjects = ({ route }) => {
   const [deleteMod, setDeleteMod] = useState(false);
   const [createProject, setCreateProject] = useState(false);
   const [subProjectState, setProjectState] = useState();
+  const [showResourceList, setShowResourceLis] = useState(false);
+  const [showSubResourceList, setShowSubResourceLis] = useState(false);
+  const [subUserData, setSubUserData] = useState();
   const [loading, setLoading] = useState(false);
   const [opration, setOperation] = useState({});
 
@@ -88,8 +92,14 @@ const SubProjects = ({ route }) => {
       >
         <View className="mt-2 flex-row justify-center">
           {resources?.length > 0
-            ? resources.map((data, index) =>
-                index < 4 ? <BigUserIcons data={data} key={index} /> : null
+            ? resources?.map((data, index) =>
+                index < 4 ? (
+                  <BigUserIcons
+                    data={data}
+                    key={index}
+                    setShowResourceLis={setShowResourceLis}
+                  />
+                ) : null
               )
             : null}
 
@@ -130,6 +140,9 @@ const SubProjects = ({ route }) => {
                 setUpdateMod={setUpdateMod}
                 data={data}
                 setOperation={setOperation}
+                setShowResourceLis={setShowResourceLis}
+                setSubUserData={setSubUserData}
+                setShowSubResourceLis={setShowSubResourceLis}
               />
             ))}
         </ScrollView>
@@ -158,6 +171,21 @@ const SubProjects = ({ route }) => {
         />
       )}
       {loading && <Indicator />}
+      {showResourceList && (
+        <UserList
+          setShowResourceLis={setShowResourceLis}
+          resources={resources}
+          subResources={subUserData}
+          showSubResourceList={showSubResourceList}
+          setShowSubResourceLis={setShowSubResourceLis}
+        />
+      )}
+      {/* {showSubResourceList && (
+        <UserList
+          setShowResourceLis={setShowSubResourceLis}
+          resources={subUserData}
+        />
+      )} */}
     </View>
   );
 };
