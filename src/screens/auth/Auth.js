@@ -4,11 +4,11 @@ import {
   Image,
   KeyboardAvoidingView,
   ScrollView,
-} from 'react-native';
-import React, {useState, useEffect} from 'react';
-import {Login, SignUp, ForgotPassword, ResetPassword} from '../../components';
-const Auth = ({navigation}) => {
-  const [authComp, setAuthComp] = useState('login');
+} from "react-native";
+import React, { useState, useEffect } from "react";
+import { Login, SignUp, ForgotPassword, ResetPassword } from "../../components";
+const Auth = ({ navigation }) => {
+  const [authComp, setAuthComp] = useState("login");
 
   function onNext(component) {
     setAuthComp(component);
@@ -18,20 +18,23 @@ const Auth = ({navigation}) => {
     // <KeyboardAvoidingView
     //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     //   style={{marginBottom: 16, marginTop: 30}}>
-    <ScrollView contentContainerStyle={{height: '100%'}} bounces={false}>
-      <View style={{height: '100%'}}>
+    <ScrollView
+      contentContainerStyle={{ height: "100%", paddingBottom: 10 }}
+      // bounces={false}
+    >
+      <View style={{ height: "100%" }}>
         <Image
-          source={require('../../assets/KT_back.png')}
+          source={require("../../assets/KT_back.png")}
           style={{
-            resizeMode: 'contain',
-            height: '30%',
-            width: '100%',
+            resizeMode: "contain",
+            height: "30%",
+            width: "100%",
           }}
         />
 
-        {authComp === 'signUp' ? (
+        {authComp === "signUp" ? (
           <SignUp onNext={onNext} navigation={navigation} />
-        ) : authComp === 'forgotPassword' ? (
+        ) : authComp === "forgotPassword" ? (
           <ForgotPassword onNext={onNext} navigation={navigation} />
         ) : (
           <Login onNext={onNext} navigation={navigation} />

@@ -42,7 +42,7 @@ export default React.memo(function Projects() {
   // const items = useSelector((state) => state.reducer);
   const { access_token } = useSelector((state) => state.reducer.token.token);
   const { user } = useSelector((state) => state.reducer.user);
-  const { loading } = useSelector((state) => state.reducer.navigation);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const [updateMod, setUpdateMod] = useState(false);
   const [deleteMod, setDeleteMod] = useState(false);
@@ -200,7 +200,7 @@ export default React.memo(function Projects() {
       )}
       {resourceMod && (
         <ManageResources
-          // setLoading={setLoading}
+          setLoading={setLoading}
           setResourceMod={setResourceMod}
           opration={opration}
         />
@@ -219,7 +219,7 @@ export default React.memo(function Projects() {
           subProject={subProject}
         />
       )}
-      {/* {loading && <Indicator />} */}
+      {loading && <Indicator />}
       {/* {<Drawer/>} */}
 
       {user.role1 && (

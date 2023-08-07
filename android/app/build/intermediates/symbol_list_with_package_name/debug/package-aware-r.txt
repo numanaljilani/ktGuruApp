@@ -1675,6 +1675,7 @@ drawable src_assets_img
 drawable src_assets_kt_back
 drawable src_assets_logo1
 drawable src_assets_logo2
+drawable src_assets_manageresources
 drawable src_assets_nodata
 drawable src_assets_password
 drawable src_assets_plus

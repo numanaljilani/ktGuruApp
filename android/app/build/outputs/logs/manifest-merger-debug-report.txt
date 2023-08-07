@@ -680,9 +680,9 @@ MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.3.0] C:
 	android:name
 		ADDED from [:react-native-firebase_analytics] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\analytics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:22-65
 meta-data#firebase_analytics_collection_enabled
-ADDED from [:react-native-firebase_analytics] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\analytics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-16:36
+ADDED from [:react-native-firebase_analytics] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\analytics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-16:37
 	android:value
-		ADDED from [:react-native-firebase_analytics] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\analytics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-33
+		ADDED from [:react-native-firebase_analytics] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\analytics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-34
 	android:name
 		ADDED from [:react-native-firebase_analytics] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\analytics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-65
 meta-data#firebase_analytics_collection_deactivated
@@ -764,9 +764,9 @@ ADDED from [:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modul
 	android:name
 		ADDED from [:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:30:25-78
 meta-data#firebase_messaging_auto_init_enabled
-ADDED from [:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:34:9-36:36
+ADDED from [:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:34:9-36:37
 	android:value
-		ADDED from [:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:36:13-33
+		ADDED from [:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:36:13-34
 	android:name
 		ADDED from [:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:35:13-64
 meta-data#com.google.firebase.messaging.default_notification_channel_id

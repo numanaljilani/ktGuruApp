@@ -3,8 +3,7 @@
 // import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query';rr
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import address from '../../config/address';
-import { baseQueryWithReauth } from './refreshApi';
-
+import {baseQueryWithReauth} from './refreshApi';
 
 // Define a service using a base URL and expected endpoints
 const URL = `${address.PORT}/`;
@@ -112,6 +111,20 @@ export const api = createApi({
         };
       },
     }),
+    reomoveComponyUser: build.mutation({
+      query: args => {
+        // console.log(args, 'args');
+        return {
+          url: `remove-companyUser`,
+          method: 'POST',
+          body: args.body,
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${args.token}`,
+          },
+        };
+      },
+    }),
 
     sendNotification: build.mutation({
       query: args => {
@@ -151,7 +164,7 @@ export const api = createApi({
           method: 'POST',
           body: args.body,
           headers: {
-            'Content-type': 'application/json; charset=UTF-8'
+            'Content-type': 'application/json; charset=UTF-8',
           },
         };
       },
@@ -171,5 +184,6 @@ export const {
   useInviteAdminMutation,
   useSendNotificationMutation,
   useGoogleLogInMutation,
-  useLogoutMutation
+  useLogoutMutation,
+  useReomoveComponyUserMutation,
 } = api;

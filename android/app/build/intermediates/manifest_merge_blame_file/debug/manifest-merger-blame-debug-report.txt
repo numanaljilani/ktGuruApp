@@ -174,11 +174,11 @@
 84        </activity>
 85
 86        <meta-data
-86-->[:react-native-firebase_analytics] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\analytics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-16:36
+86-->[:react-native-firebase_analytics] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\analytics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-16:37
 87            android:name="firebase_analytics_collection_enabled"
 87-->[:react-native-firebase_analytics] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\analytics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-65
-88            android:value="true" />
-88-->[:react-native-firebase_analytics] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\analytics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-33
+88            android:value="false" />
+88-->[:react-native-firebase_analytics] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\analytics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-34
 89        <meta-data
 89-->[:react-native-firebase_analytics] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\analytics\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:9-19:37
 90            android:name="firebase_analytics_collection_deactivated"
@@ -264,11 +264,11 @@
 132        </receiver>
 133
 134        <meta-data
-134-->[:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:34:9-36:36
+134-->[:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:34:9-36:37
 135            android:name="firebase_messaging_auto_init_enabled"
 135-->[:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:35:13-64
-136            android:value="true" />
-136-->[:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:36:13-33
+136            android:value="false" />
+136-->[:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:36:13-34
 137        <meta-data
 137-->[:react-native-firebase_messaging] D:\Moksha\ktguru\ktguru\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:37:9-39:32
 138            android:name="com.google.firebase.messaging.default_notification_channel_id"

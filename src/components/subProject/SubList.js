@@ -1,14 +1,14 @@
-import { Text, TouchableOpacity, View, Image } from "react-native";
-import Swipeable from "react-native-gesture-handler/Swipeable";
-import React, { memo, useRef } from "react";
-import imagePath from "../../constant/imagePath";
-import navigationString from "../../constant/navigationString";
-import { useNavigation } from "@react-navigation/native";
-import { stringManupuation } from "../../utils/stringManupulation";
-import { useDispatch, useSelector } from "react-redux";
-import { setSubProject } from "../../redux/slice/subProject";
-import UserIcons from "../userComponent/UserIcons";
-import analytics from "@react-native-firebase/analytics";
+import {Text, TouchableOpacity, View, Image} from 'react-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import React, {memo, useRef} from 'react';
+import imagePath from '../../constant/imagePath';
+import navigationString from '../../constant/navigationString';
+import {useNavigation} from '@react-navigation/native';
+import {stringManupuation} from '../../utils/stringManupulation';
+import {useDispatch, useSelector} from 'react-redux';
+import {setSubProject} from '../../redux/slice/subProject';
+import UserIcons from '../userComponent/UserIcons';
+import analytics from '@react-native-firebase/analytics';
 
 const SubList = ({
   setDeleteMod,
@@ -19,7 +19,7 @@ const SubList = ({
   setSubUserData,
   setShowSubResourceLis,
 }) => {
-  const { user } = useSelector((state) => state.reducer.user);
+  const {user} = useSelector(state => state.reducer.user);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const swipeableRef = useRef(null);
@@ -39,15 +39,14 @@ const SubList = ({
   const DeleteSwipe = () => {
     return (
       user.role1 ||
-      (!user?.role2?.role === "consultant" && (
+      (!user?.role2?.role === 'consultant' && (
         <TouchableOpacity
           onPress={deleteFunction}
-          className="my-1 rounded-r-lg bg-red-600 items-center justify-center"
-        >
+          className="my-1 rounded-r-lg bg-red-600 items-center justify-center">
           <Image
             source={imagePath.icDelete}
             className="mx-3"
-            style={{ tintColor: "white" }}
+            style={{tintColor: 'white'}}
           />
         </TouchableOpacity>
       ))
@@ -57,11 +56,10 @@ const SubList = ({
     return (
       <TouchableOpacity
         onPress={updateFunction}
-        className="my-1 rounded-l-lg bg-green-600 items-center justify-center"
-      >
+        className="my-1 rounded-l-lg bg-green-600 items-center justify-center">
         <Image
           source={imagePath.icEdit}
-          style={{ tintColor: "white" }}
+          style={{tintColor: 'white'}}
           className="w-10 h-10 mx-3"
         />
       </TouchableOpacity>
@@ -69,8 +67,8 @@ const SubList = ({
   };
 
   const navigateFunction = async () => {
-    await analytics().logEvent("navigate_to_Sub_project", {
-      list: "navigate to sub project",
+    await analytics().logEvent('navigate_to_Sub_project', {
+      list: 'navigate to sub project',
       subProjectName: data?.projectName,
     });
     dispatch(setSubProject(data));
@@ -83,14 +81,12 @@ const SubList = ({
       overshootRight={false}
       renderRightActions={user?.role1 && UpdateSwipe}
       onSwipeableOpen={() => {
-        console.log("open");
-      }}
-    >
+        console.log('open');
+      }}>
       <TouchableOpacity
         onPress={navigateFunction}
         className=" justify-between py-2  mx-2 rounded-lg border-t-2 border-[#0066a2] px-3 bg-white my-1 h-40 overflow-hidden"
-        style={{ elevation: 15 }}
-      >
+        style={{elevation: 15}}>
         <View>
           <Text className="text-[#0066a2] my-1 font-semibold">
             {data.projectName}
@@ -110,7 +106,7 @@ const SubList = ({
                     setShowResourceLis={setShowResourceLis}
                     setShowSubResourceLis={setShowSubResourceLis}
                   />
-                )
+                ),
             )}
           {data.resources.length > 4 ? (
             <TouchableOpacity
@@ -120,10 +116,9 @@ const SubList = ({
                 setShowSubResourceLis(true);
               }}
               className=" mr-1  flex-row justify-center items-center w-9  h-9 rounded-full overflow-hidden bg-blue-50 shadow-2xl"
-              style={{ elevation: 2 }}
-            >
+              style={{elevation: 2}}>
               <Text className="font-semibold text-black">
-                {data.resources.length - 4}
+                +{data.resources.length - 4}
               </Text>
             </TouchableOpacity>
           ) : null}
